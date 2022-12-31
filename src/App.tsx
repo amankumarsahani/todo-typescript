@@ -6,19 +6,30 @@ import todo from './Models/Todo';
 import './Components/TodoStyle.css'
 
 function App() {
+
+  const updateTime=()=>{
+    const updateT=new Date().toLocaleTimeString();
+    setTime(updateT);
+  }
+
+  setInterval(updateTime,1000);
+
+  const nowTime=new Date().toLocaleTimeString();
+  const nowDate=new Date().toLocaleDateString();
   const [todos, setTodos] = useState<todo[]>([]);
-  const date = new Date().toLocaleDateString().replaceAll('/', '-');
+  const [time,setTime]=useState(nowTime);
+  const date = nowDate.replaceAll('/', '-');
+
 
   const addTodoHandler = (TodoText: string) => {
     const newTodo = new todo(TodoText);
     setTodos((prevTodos) => { return prevTodos.concat(newTodo) })
   };
-  console.log(date);
   return (
     <div className="App Card">
       <div className='main-title'>
         <h1 >MY TODO's</h1>
-        <h5 >{date}</h5>
+        <h5 >{date} {time}</h5>
       </div>
 
       <NewTodoForm addNewTodo={addTodoHandler} />
