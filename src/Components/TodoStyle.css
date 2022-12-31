@@ -1,0 +1,19 @@
+.App {
+    margin: 5vh;
+}
+.main-title{
+    text-align: center;
+}
+
+.Card{
+    border: none;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.labelName{
+    font-size: large;
+    font-weight: 700;
+    padding-bottom: 10px;
+    color: darkblue;
+}

@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import NewTodoForm from './Components/NewTodoForm';
+import Todos from './Components/Todos';
+import todo from './Models/Todo';
+import './Components/TodoStyle.css'
 
 function App() {
+  const [todos, setTodos] = useState<todo[]>([]);
+  const date = new Date().toLocaleDateString().replaceAll('/', '-');
+
+  const addTodoHandler = (TodoText: string) => {
+    const newTodo = new todo(TodoText);
+    setTodos((prevTodos) => { return prevTodos.concat(newTodo) })
+  };
+  console.log(date);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App Card">
+      <div className='main-title'>
+        <h1 >MY TODO's</h1>
+        <h5 >{date}</h5>
+      </div>
+
+      <NewTodoForm addNewTodo={addTodoHandler} />
+      <Todos items={todos} />
+
     </div>
   );
 }
