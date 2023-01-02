@@ -25,15 +25,20 @@ function App() {
     const newTodo = new todo(TodoText);
     setTodos((prevTodos) => { return prevTodos.concat(newTodo) })
   };
+
+  const removeTodoHandler = (todoId:string)=>{
+    setTodos((prevTodos)=>{return prevTodos.filter((todo)=>{return todo.id!==todoId})});
+  };
+
   return (
-    <div className="App Card">
+    <div className="App Card shadow-5">
       <div className='main-title'>
         <h1 >MY TODO's</h1>
         <h5 >{date} {time}</h5>
       </div>
 
       <NewTodoForm addNewTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} removeTodo={removeTodoHandler}/>
 
     </div>
   );

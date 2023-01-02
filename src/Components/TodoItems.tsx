@@ -1,6 +1,6 @@
-const TodoItems: React.FC<{ text: string }> = (props) => {
+const TodoItems: React.FC<{ text: string;removeTodo:()=>void }> = (props) => {
     return (
-        <li className="list-group-item">{props.text}</li>
+        <li className="list-group-item" onClick={props.removeTodo}>{props.text}</li>
     )
 }
 
